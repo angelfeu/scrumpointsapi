@@ -1,4 +1,5 @@
 import tbMembers from '../models/member';
+import tbVotes from '../models/vote';
 
 export async function deleteMembersBySession(req, res) {
     const { idsession } = req.params;
@@ -101,6 +102,12 @@ export async function getOneMember(req, res) {
 export async function deleteMember(req, res) {
     const { idmember } = req.params;
     try {
+        // votes
+        await tbVotes.destroy({
+            where: {
+                idmember: idmember
+            }
+        });
         const deleteRowCount = await tbMembers.destroy({
             where: {
                 id: idmember

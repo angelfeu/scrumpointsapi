@@ -1,5 +1,13 @@
 import tbSessions from '../models/session';
 import tbMembers from '../models/member';
+import tbVotes from '../models/vote';
+import tbPolls from '../models/poll';
+
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+    }
+}
 
 export async function getSessionByIdAndPassword(req, res) {
     const { idsession, password } = req.params;
@@ -109,6 +117,35 @@ export async function getOneSession(req, res) {
 export async function deleteSession(req, res) {
     const { idsession } = req.params;
     try {
+        // polls
+        await tbPolls.destroy({
+            where: {
+                idsession: idsession
+            }
+        });
+        // members
+        const startDeleteMembers = async () => {
+            const tbmembers = await tbMembers.findAll({
+                where: {
+                    idsession: idsession
+                }
+            });
+            await asyncForEach(tbmembers, async member => {
+                // votes
+                await tbVotes.destroy({
+                    where: {
+                        idmember: member.id
+                    }
+                });
+            });
+            await tbMembers.destroy({
+                where: {
+                    idsession: idsession
+                }
+            });
+        }
+        await startDeleteMembers();
+        // session
         const deleteRowCount = await tbSessions.destroy({
             where: {
                 id: idsession
