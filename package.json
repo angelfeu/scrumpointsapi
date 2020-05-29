@@ -1,5 +1,8 @@
 {
   "name": "scrumpointsapi",
+  "engines": {
+    "node": "13.12.0"
+  },
   "version": "1.0.0",
   "description": "",
   "repository": {
@@ -9,7 +12,6 @@
   "bugs": {
     "url": "https://github.com/AngelFeu/scrumpointsapi/issues"
   },
-  "homepage": "https://github.com/AngelFeu/scrumpointsapi#readme",
   "keywords": [],
   "author": "",
   "license": "ISC",
