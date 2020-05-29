@@ -1,7 +1,8 @@
 {
   "name": "scrumpointsapi",
   "engines": {
-    "node": "13.12.0"
+    "node": "13.12.0",
+    "npm": "6.14.4"
   },
   "version": "1.0.0",
   "description": "",
@@ -15,6 +16,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "Heroku-postbuild": "npm install --production",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
