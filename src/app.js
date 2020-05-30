@@ -1,5 +1,5 @@
 import express from 'express';
-var bodyParser = require("body-parser");
+import bodyParser from "body-parser";
 import morgan from 'morgan';
 import cors from 'cors';
 
