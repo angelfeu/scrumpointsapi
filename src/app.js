@@ -1,4 +1,5 @@
-import express, { json } from 'express';
+import express from 'express';
+var bodyParser = require("body-parser");
 import morgan from 'morgan';
 import cors from 'cors';
 
@@ -14,7 +15,7 @@ const app = express();
 
 // middlewares
 app.use(morgan('dev'));
-app.use(json());
+app.use(bodyParser.json());
 app.use(cors());
 //app.options('*', cors());
 
