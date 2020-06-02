@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel src --out-dir dist",
-    "start": "node dist/index.js"
+    "start": "babel-node index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "Heroku-postbuild": "npm install --production",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "babel-cli": "^6.26.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
@@ -34,10 +35,10 @@
     "sequelize": "^5.21.10"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.6",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "nodemon": "^2.0.4"
   }
 }
